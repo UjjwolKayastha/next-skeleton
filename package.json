@@ -8,8 +8,9 @@
     "bootstrap": "yarn install; lerna bootstrap;",
     "start": "lerna run start --parallel",
     "start:user": "node -r ./dotenv.config.js node_modules/.bin/lerna run --scope user --stream dev",
-    "build:user": "lerna run build --scope user",
-    "run:build:user": "lerna run start --scope user"
+    "build:user": "node -r ./dotenv.config.js node_modules/.bin/lerna run --scope user --stream build",
+    "run:build:user": "lerna run start --scope user",
+    "export:user": "node -r ./dotenv.config.js node_modules/.bin/lerna run --scope user --stream export"
   },
   "workspaces": [
     "packages/*"
