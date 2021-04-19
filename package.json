@@ -7,7 +7,7 @@
   "scripts": {
     "bootstrap": "yarn install; lerna bootstrap;",
     "start": "lerna run start --parallel",
-    "start:user": "lerna run dev --scope user --stream",
+    "start:user": "node -r ./dotenv.config.js node_modules/.bin/lerna run --scope user --stream dev",
     "build:user": "lerna run build --scope user",
     "run:build:user": "lerna run start --scope user"
   },
