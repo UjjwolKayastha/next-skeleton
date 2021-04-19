@@ -1,3 +1,9 @@
 node_modules/
 
 .env
+
+out/
+
+.firebaserc
+firebase.json
+.firebase
