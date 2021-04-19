@@ -1,0 +1,12 @@
+{
+  "name": "shared",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.ts",
+  "description": " It contains shared components",
+  "dependencies": {
+    "next-compose-plugins": "^2.2.1",
+    "next-images": "^1.7.0",
+    "next-transpile-modules": "^6.4.0"
+  }
+}

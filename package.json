@@ -1,0 +1,17 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  },
+  "scripts": {
+    "bootstrap": "yarn install; lerna bootstrap;",
+    "start": "lerna run start --parallel",
+    "start:user": "lerna run dev --scope user --stream",
+    "build:user": "lerna run build --scope user",
+    "run:build:user": "lerna run start --scope user"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
