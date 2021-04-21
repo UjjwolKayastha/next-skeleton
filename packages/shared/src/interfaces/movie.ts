@@ -8,7 +8,7 @@ export interface Movie {
   id?: number;
   overview: string;
   poster_path?: string;
-  backdrop_path: string;
+  backdrop_path?: string;
   vote_count?: number;
   release_date?: string;
 }

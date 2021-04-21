@@ -9,16 +9,16 @@ import {
   Placeholder,
 } from "semantic-ui-react";
 import { Movie } from "../../../interfaces";
-import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../../../config";
+import { IMAGE_BASE_URL, POSTER_SIZE } from "../../../config";
 import { ellipsis } from "../../../lib/ellipsis";
 
 export const MovieCard: React.FC<Movie & { isLoading: boolean }> = ({
-  backdrop_path,
   original_title,
   overview,
   vote_average,
   release_date,
   isLoading,
+  poster_path,
 }) => {
   return (
     <Card raised>
@@ -28,12 +28,12 @@ export const MovieCard: React.FC<Movie & { isLoading: boolean }> = ({
         </Placeholder>
       ) : (
         <Image
-          src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop_path}`}
+          src={`${IMAGE_BASE_URL}${POSTER_SIZE}${poster_path}`}
           alt={original_title}
         />
       )}
 
-      <Card.Content>
+      {/* <Card.Content>
         <Card.Header>{original_title}</Card.Header>
         <Card.Meta>{release_date}</Card.Meta>
         <Card.Description>{ellipsis(overview, 100)}</Card.Description>
@@ -43,7 +43,7 @@ export const MovieCard: React.FC<Movie & { isLoading: boolean }> = ({
           <Icon name="star" />
           {vote_average}
         </a>
-      </Card.Content>
+      </Card.Content> */}
     </Card>
   );
 };
