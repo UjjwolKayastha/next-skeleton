@@ -27,7 +27,10 @@ export const MovieCard: React.FC<Movie & { isLoading: boolean }> = ({
           <Placeholder.Image square />
         </Placeholder>
       ) : (
-        <Image src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop_path}`} />
+        <Image
+          src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop_path}`}
+          alt={original_title}
+        />
       )}
 
       <Card.Content>
