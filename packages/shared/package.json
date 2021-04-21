@@ -11,6 +11,10 @@
     "next-images": "^1.7.0",
     "next-transpile-modules": "^6.4.0",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.3"
+    "semantic-ui-react": "^2.0.3",
+    "styled-components": "^5.2.3"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.9"
   }
 }
