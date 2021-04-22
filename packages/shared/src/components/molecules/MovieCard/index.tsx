@@ -10,7 +10,7 @@ import {
 } from "semantic-ui-react";
 import { Movie } from "../../../interfaces";
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../../config";
-import { ellipsis } from "../../../lib/ellipsis";
+import { ellipsis } from "../../../utils/ellipsis";
 
 export const MovieCard: React.FC<Movie & { isLoading: boolean }> = ({
   original_title,
