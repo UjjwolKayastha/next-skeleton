@@ -3,8 +3,8 @@ import { Content, Text, Wrapper, ImageWrapper } from "./HomeCover.styles";
 
 interface HomeCoverProps {
   image: string;
-  original_title: string;
-  overview: string;
+  original_title?: string;
+  overview?: string;
 }
 
 export const HomeCover: React.FC<HomeCoverProps> = ({
