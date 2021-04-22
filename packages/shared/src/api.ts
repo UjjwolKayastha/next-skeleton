@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { API_URL } from "./config";
-import { handleError } from "./lib";
+import { handleError } from "./utils";
 
 axios.defaults.baseURL = API_URL;
 axios.defaults.headers["Content-Type"] = "application/json";
