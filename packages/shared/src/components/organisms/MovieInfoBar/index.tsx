@@ -13,7 +13,12 @@ interface MovieInfoProps {
   language: string;
 }
 
-const MovieInfoBar = ({ time, budget, revenue, language }: MovieInfoProps) => {
+export const MovieInfoBar = ({
+  time,
+  budget,
+  revenue,
+  language,
+}: MovieInfoProps) => {
   return (
     <Wrapper>
       <Content>
@@ -35,4 +40,3 @@ const MovieInfoBar = ({ time, budget, revenue, language }: MovieInfoProps) => {
     </Wrapper>
   );
 };
-export default MovieInfoBar;
