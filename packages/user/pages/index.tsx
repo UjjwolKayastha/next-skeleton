@@ -1,5 +1,7 @@
 import { useQuery } from "react-query";
 import { Card, Image } from "semantic-ui-react";
+
+import { GetServerSideProps } from "next";
 import {
   movieService,
   MovieCard,
@@ -9,7 +11,7 @@ import {
   GlobalStyle,
 } from "shared";
 
-export default function Home() {
+const Home = () => {
   const { data: popularMovies, isLoading } = useQuery(
     ["getPopularMovies"],
     movieService.getPopularMovies
@@ -29,7 +31,9 @@ export default function Home() {
         {popularMovies?.results?.map((popularMovie) => {
           return (
             <MovieCard
+              key={popularMovie.id}
               isLoading={isLoading}
+              id={popularMovie.id}
               original_title={popularMovie.original_title}
               poster_path={popularMovie.poster_path}
               overview={popularMovie.overview}
@@ -41,4 +45,20 @@ export default function Home() {
       </Card.Group>
     </>
   );
-}
+};
+export const getServerSideProps: GetServerSideProps = async () => {
+  try {
+    const popularMovies = await movieService.getPopularMovies();
+    return {
+      props: {
+        popularMovies: popularMovies?.results,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {},
+    };
+  }
+};
+
+export default Home;

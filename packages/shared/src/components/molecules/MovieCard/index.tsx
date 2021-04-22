@@ -19,6 +19,7 @@ export const MovieCard: React.FC<Movie & { isLoading: boolean }> = ({
   release_date,
   isLoading,
   poster_path,
+  id,
 }) => {
   return (
     <Card raised>
