@@ -1,6 +1,5 @@
 import React from "react";
-import { Image } from "semantic-ui-react";
-import { Content, Text, Wrapper } from "./HomeCover.styles";
+import { Content, Text, Wrapper, ImageWrapper } from "./HomeCover.styles";
 
 interface HomeCoverProps {
   image: string;
@@ -13,10 +12,11 @@ export const HomeCover: React.FC<HomeCoverProps> = ({
   original_title,
   overview,
 }) => {
-  console.log("IMG", image);
   return (
     <Wrapper>
-      <Image centered src={image} className="image" />
+      <ImageWrapper>
+        <img src={image} className="image" />
+      </ImageWrapper>
       <Content>
         <Text>
           <h1>{original_title}</h1>

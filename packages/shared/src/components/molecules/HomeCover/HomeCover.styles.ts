@@ -22,6 +22,12 @@ export const Content = styled.div`
   margin: 0 auto;
 `;
 
+export const ImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: -0.875em -0.5em;
+`;
+
 export const Text = styled.div`
   z-index: 100;
   max-width: 700px;
