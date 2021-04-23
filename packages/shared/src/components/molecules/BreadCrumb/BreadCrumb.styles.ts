@@ -17,6 +17,9 @@ export const Content = styled.div`
   padding: 0 20px;
 
   span {
+    &:nth-child(1) {
+      cursor: pointer;
+    }
     font-size: var(--fontMed);
     color: var(--white);
     padding-right: 10px;
