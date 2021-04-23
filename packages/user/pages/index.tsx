@@ -1,57 +1,78 @@
-import { useQuery } from "react-query";
-import { Card, Image } from "semantic-ui-react";
+import { useState } from "react";
+import { useInfiniteQuery } from "react-query";
+import { Card } from "semantic-ui-react";
 
-import { GetServerSideProps } from "next";
+// import { GetServerSideProps } from "next";
 import {
   movieService,
   MovieCard,
   IMAGE_BASE_URL,
   BACKDROP_SIZE,
   HomeCover,
-  GlobalStyle,
+  Spin,
+  SearchBar,
+  Button,
 } from "shared";
 
 const Home = () => {
-  const { data: popularMovies, isLoading } = useQuery(
-    ["getPopularMovies"],
-    movieService.getPopularMovies
-  );
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const {
+    data: movies,
+    isLoading,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery(["getmovies", searchTerm], movieService.getMovies, {
+    getNextPageParam: (lg) => {
+      return lg.page + 1;
+    },
+  });
+
+  console.log("MOVIES", movies);
 
   return (
     <>
-      {popularMovies && (
+      {movies?.pages[0].results[0] && !searchTerm ? (
         <HomeCover
-          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${popularMovies.results[0].backdrop_path}`}
-          original_title={popularMovies.results[0].original_title}
-          overview={popularMovies.results[0].overview}
+          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movies.pages[0].results[0].backdrop_path}`}
+          original_title={movies.pages[0].results[0].original_title}
+          overview={movies.pages[0].results[0].overview}
         />
-      )}
+      ) : null}
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
       <Card.Group centered>
-        {popularMovies?.results?.map((popularMovie) => {
-          return (
-            <MovieCard
-              key={popularMovie.id}
-              isLoading={isLoading}
-              id={popularMovie.id}
-              original_title={popularMovie.original_title}
-              poster_path={popularMovie.poster_path}
-              overview={popularMovie.overview}
-              vote_average={popularMovie.vote_average}
-              release_date={popularMovie.release_date}
-            />
-          );
+        {movies?.pages.map((page) => {
+          return page.results?.map((popularMovie) => {
+            return (
+              <MovieCard
+                key={popularMovie.id}
+                isLoading={isLoading}
+                id={popularMovie.id}
+                original_title={popularMovie.original_title}
+                poster_path={popularMovie.poster_path}
+                overview={popularMovie.overview}
+                vote_average={popularMovie.vote_average}
+                release_date={popularMovie.release_date}
+              />
+            );
+          });
         })}
       </Card.Group>
+      {isFetchingNextPage ? (
+        <Spin />
+      ) : (
+        <Button name={"LoadMore"} onClick={() => fetchNextPage()} />
+      )}
     </>
   );
 };
 // export const getServerSideProps: GetServerSideProps = async () => {
 //   try {
-//     const popularMovies = await movieService.getPopularMovies();
+//     const movies = await movieService.getmovies();
 //     return {
 //       props: {
-//         popularMovies: popularMovies?.results,
+//         movies: movies?.results,
 //       },
 //     };
 //   } catch (error) {
