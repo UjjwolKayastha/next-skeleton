@@ -12,7 +12,7 @@ import {
 } from "shared";
 import { useRouter } from "next/router";
 
-const noImage = require("../../../images/no-image.jpg");
+const noImage = require("../../images/no-image.jpg");
 const MovieDetails = () => {
   const route = useRouter();
 

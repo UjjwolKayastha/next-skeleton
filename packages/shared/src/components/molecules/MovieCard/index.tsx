@@ -23,7 +23,7 @@ export const MovieCard: React.FC<Movie & { isLoading: boolean }> = ({
   id,
 }) => {
   return (
-    <Link href={`movie/${id}`}>
+    <Link href={`/${id}`}>
       <Card raised>
         {isLoading ? (
           <Placeholder>

@@ -46,19 +46,19 @@ const Home = () => {
     </>
   );
 };
-export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const popularMovies = await movieService.getPopularMovies();
-    return {
-      props: {
-        popularMovies: popularMovies?.results,
-      },
-    };
-  } catch (error) {
-    return {
-      props: {},
-    };
-  }
-};
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   try {
+//     const popularMovies = await movieService.getPopularMovies();
+//     return {
+//       props: {
+//         popularMovies: popularMovies?.results,
+//       },
+//     };
+//   } catch (error) {
+//     return {
+//       props: {},
+//     };
+//   }
+// };
 
 export default Home;
