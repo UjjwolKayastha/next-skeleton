@@ -1,22 +1,36 @@
 import { API } from "../api";
 
-import { API_URL, POPULAR_BASE_URL, API_KEY } from "../config";
+import { API_URL, SEARCH_BASE_URL, POPULAR_BASE_URL, API_KEY } from "../config";
 import { Credits, IPopularMovies, Movie } from "../interfaces/movie";
+import { QueryFunction } from "react-query";
 
-const getPopularMovies = async () => {
-  const response: IPopularMovies = await API.get(POPULAR_BASE_URL);
+interface getMoviesProps {
+  results?: Movie[];
+  page?: number;
+  total_pages?: number;
+}
+
+const getMovies: QueryFunction<getMoviesProps | undefined> = async (
+  context
+) => {
+  const [, searchTerm] = context.queryKey;
+  let endpoint: string = searchTerm
+    ? `${SEARCH_BASE_URL}${searchTerm}&page=${context.pageParam}`
+    : `${POPULAR_BASE_URL}&page=${context.pageParam}`;
+
+  const response = await API.get(endpoint);
+
   if (response) {
-    return response;
+    return response as getMoviesProps;
   }
 };
 
 const getMovieById = async (
   movieId: number
-): Promise<Movie & Credits | undefined> => {
+): Promise<(Movie & Credits) | undefined> => {
   const movieResponse = (await API.get(
     `${API_URL}movie/${movieId}?api_key=${API_KEY}`
   )) as Movie;
-
 
   const creditResponse = (await API.get(
     `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`
@@ -64,6 +78,6 @@ const getMovieById = async (
 };
 
 export const movieService = {
-  getPopularMovies,
+  getMovies,
   getMovieById,
 };
