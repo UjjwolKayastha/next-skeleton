@@ -32,9 +32,11 @@ export const MovieInfoBar = ({
           <p>Box Office: {convertMoney(revenue)}</p>
         </div>
         <div className="column">
-          <p>
-            Language{language.split(",").length > 1 ? "s" : ""}: {language}
-          </p>
+          {language && (
+            <p>
+              Language{language.split(",").length > 1 ? "s" : ""}: {language}
+            </p>
+          )}
         </div>
       </Content>
     </Wrapper>

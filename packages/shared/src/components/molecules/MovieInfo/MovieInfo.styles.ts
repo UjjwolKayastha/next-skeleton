@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../../config";
+import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../../../config";
 
 export const Wrapper = styled.div`
-  background: ${({ backdrop }) =>
+  background: ${({ backdrop }: { backdrop: string | undefined }) =>
     backdrop ? `url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop})` : "#000"};
   background-size: cover;
   background-position: center;
