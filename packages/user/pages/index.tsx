@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import { Card } from "semantic-ui-react";
 
+import { Wrapper } from "../styles/index.styles";
+
 // import { GetServerSideProps } from "next";
+
 import {
   movieService,
   MovieCard,
@@ -33,11 +36,13 @@ const Home = () => {
   return (
     <>
       {movies?.pages[0].results[0] && !searchTerm ? (
-        <HomeCover
-          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movies.pages[0].results[0].backdrop_path}`}
-          original_title={movies.pages[0].results[0].original_title}
-          overview={movies.pages[0].results[0].overview}
-        />
+        <Wrapper backdrop={movies?.pages[0].results[0].backdrop_path}>
+          <HomeCover
+            image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movies.pages[0].results[0].backdrop_path}`}
+            original_title={movies.pages[0].results[0].original_title}
+            overview={movies.pages[0].results[0].overview}
+          />
+        </Wrapper>
       ) : null}
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
