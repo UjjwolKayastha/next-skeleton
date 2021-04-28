@@ -33,3 +33,8 @@ jobs:
       - name: Build app
         run: |
           yarn build:user
+
+      - name: Deploy to firebase
+        run: | 
+          firebase deploy --token ${{secrets.FIREBASE_TOKEN}}
+      
