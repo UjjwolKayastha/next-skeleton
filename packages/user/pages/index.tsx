@@ -67,7 +67,7 @@ const Home = () => {
       {isFetchingNextPage ? (
         <Spin />
       ) : (
-        <Button name={"LoadMore"} onClick={() => fetchNextPage()} />
+        <Button name={"Load More"} onClick={() => fetchNextPage()} />
       )}
     </>
   );
