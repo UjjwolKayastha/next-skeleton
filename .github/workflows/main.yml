@@ -32,8 +32,8 @@ jobs:
 
       - name: Export app for deployment and copy to root
         run: |
-          yarn export:user
-          mv packages/user/out out  
+          pwd
+          yarn export:user && mv packages/user/out out  
 
       - name: Deploy to firebase
         run: | 
