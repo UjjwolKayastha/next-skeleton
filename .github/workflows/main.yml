@@ -33,8 +33,7 @@ jobs:
       - name: Export app for deployment and copy to root
         run: |
           pwd
-          yarn build:user && yarn export:user && mv -f packages/user/out out  
-
+          yarn build:user && yarn export:user && mv -f packages/user/out /home/runner/work/next-skeleton/next-skeleton
       - name: Deploy to firebase
         run: | 
           ./node_modules/.bin/firebase deploy --token ${{secrets.FIREBASE_TOKEN}} --project next-skeleton
