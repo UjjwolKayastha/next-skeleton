@@ -7,5 +7,6 @@ module.exports = withPlugins([withTM(), withImages], {
     // custom webpack config
     return config;
   },
+  distDir:"../../out",
   images: {},
 });
