@@ -30,9 +30,10 @@ jobs:
         run: |
           echo "NEXT_PUBLIC_TMDB_KEY = ${{secrets.NEXT_PUBLIC_TMDB_KEY}}" > .env
 
-      - name: Build app
+      - name: Export app for deployment and copy to root
         run: |
-          yarn build:user
+          yarn export:user
+          mv packages/user/out out  
 
       - name: Deploy to firebase
         run: | 
