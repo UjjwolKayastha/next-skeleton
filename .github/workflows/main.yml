@@ -25,4 +25,11 @@ jobs:
       
       - name: Installing dependencies
         run: yarn bootstrap
-        
+
+      - name: Initializing env variables
+        run: |
+          echo "NEXT_PUBLIC_TMDB_KEY = ${{secrets.NEXT_PUBLIC_TMDB_KEY}}" > .env
+
+      - name: Build app
+        run: |
+          yarn build:user
