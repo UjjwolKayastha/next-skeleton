@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery, QueryClient } from "react-query";
 import { Card } from "semantic-ui-react";
 
 import { Wrapper } from "../styles/index.styles";
 
-// import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
+
+import { dehydrate } from "react-query/hydration";
 
 import {
   movieService,
@@ -17,7 +19,7 @@ import {
   Button,
 } from "shared";
 
-const Home = () => {
+const Home = ({ dehydratedState }) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   const {
@@ -29,13 +31,14 @@ const Home = () => {
     getNextPageParam: (lg) => {
       return lg.page + 1;
     },
+    initialData: dehydratedState.queries[0].state.data,
   });
 
-  console.log("MOVIES", movies);
+  // console.log("MOVIES", movies);
 
   return (
     <>
-      {movies?.pages[0].results[0] && !searchTerm ? (
+      {movies?.pages?.[0]?.results[0] && !searchTerm ? (
         <Wrapper backdrop={movies?.pages[0].results[0].backdrop_path}>
           <HomeCover
             image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movies.pages[0].results[0].backdrop_path}`}
@@ -47,7 +50,7 @@ const Home = () => {
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
       <Card.Group centered>
-        {movies?.pages.map((page) => {
+        {movies?.pages?.map((page) => {
           return page.results?.map((popularMovie) => {
             return (
               <MovieCard
@@ -72,19 +75,21 @@ const Home = () => {
     </>
   );
 };
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   try {
-//     const movies = await movieService.getmovies();
-//     return {
-//       props: {
-//         movies: movies?.results,
-//       },
-//     };
-//   } catch (error) {
-//     return {
-//       props: {},
-//     };
-//   }
-// };
+
+export const getStaticProps: GetStaticProps = async () => {
+  try {
+    const queryClient = new QueryClient();
+    await queryClient.prefetchInfiniteQuery(["getmovies"], movieService.getMovies);
+    return {
+      props: {
+        dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      },
+    };
+  } catch (error) {
+    return {
+      props: {},
+    };
+  }
+};
 
 export default Home;

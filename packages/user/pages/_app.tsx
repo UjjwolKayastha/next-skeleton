@@ -3,13 +3,22 @@ import "../styles/globals.css";
 import "semantic-ui-css/semantic.min.css";
 import { GlobalStyle } from "shared";
 
-const queryClient = new QueryClient();
+import { Hydrate } from "react-query/hydration";
+import React from "react";
 
 const MyApp = ({ Component, pageProps }) => {
+  const queryClientRef = React.useRef<any>();
+
+  if(!queryClientRef.current) {
+    queryClientRef.current = new QueryClient();
+  }
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
-      <GlobalStyle />
+    <QueryClientProvider client={queryClientRef.current}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <Component {...pageProps} />
+        <GlobalStyle />
+      </Hydrate>
     </QueryClientProvider>
   );
 };
