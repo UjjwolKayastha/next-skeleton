@@ -15,7 +15,7 @@ export const HomeCover: React.FC<HomeCoverProps> = ({
   return (
     <Wrapper>
       <ImageWrapper>
-        <img src={image} className="image" />
+        <img src={image} className="image" alt={original_title} />
       </ImageWrapper>
       <Content>
         <Text>

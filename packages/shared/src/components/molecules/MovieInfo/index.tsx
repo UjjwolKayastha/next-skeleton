@@ -18,7 +18,10 @@ export const MovieInfo: React.FC<Movie & Credits> = ({
 }) => (
   <Wrapper backdrop={backdrop_path}>
     <Content>
-      <HomeCover image={`${IMAGE_BASE_URL}${POSTER_SIZE}${poster_path}`} />
+      <HomeCover
+        image={`${IMAGE_BASE_URL}${POSTER_SIZE}${poster_path}`}
+        original_title={title}
+      />
       <Text>
         <h1>{title}</h1>
         <h3>PLOT</h3>
