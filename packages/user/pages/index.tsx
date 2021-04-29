@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Head from "next/head";
 import { useInfiniteQuery, QueryClient } from "react-query";
 import { Card } from "semantic-ui-react";
 
@@ -38,6 +39,15 @@ const Home = ({ dehydratedState }) => {
 
   return (
     <>
+      <Head>
+        <html lang="en" />
+        <title>Movies App</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="A movie site that shows popular movies with movie details"
+        />
+      </Head>
       {movies?.pages?.[0]?.results[0] && !searchTerm ? (
         <Wrapper backdrop={movies?.pages[0].results[0].backdrop_path}>
           <HomeCover
@@ -79,7 +89,10 @@ const Home = ({ dehydratedState }) => {
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const queryClient = new QueryClient();
-    await queryClient.prefetchInfiniteQuery(["getmovies"], movieService.getMovies);
+    await queryClient.prefetchInfiniteQuery(
+      ["getmovies"],
+      movieService.getMovies
+    );
     return {
       props: {
         dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
