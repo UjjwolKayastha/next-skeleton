@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "description": " It contains shared components",
   "dependencies": {
+    "@fullhuman/postcss-purgecss": "^4.0.3",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "firebase": "^8.4.2",
