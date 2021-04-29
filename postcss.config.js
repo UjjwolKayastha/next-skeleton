@@ -16,10 +16,10 @@ module.exports = {
     [
       "@fullhuman/postcss-purgecss",
       {
-        content: [
-          "/packages/user/pages/**/*.{js,jsx,ts,tsx}",
-          "/packages/shared/src/components/**/*.{js,jsx,ts,tsx}",
-        ],
+        // content: [
+        //   "/packages/user/pages/**/*.{js,jsx,ts,tsx}",
+        //   "/packages/shared/src/components/**/*.{js,jsx,ts,tsx}",
+        // ],
         defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
         safelist: ["html", "body"],
       },
