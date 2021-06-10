@@ -80,7 +80,15 @@ const Home = ({ dehydratedState }) => {
       {isFetchingNextPage ? (
         <Spin />
       ) : (
-        <Button name={"Load More"} onClick={() => fetchNextPage()} />
+        <>
+          <Button name={"Load More"} onClick={() => fetchNextPage()} />
+          {/* <Button
+            name={"SENTRY"}
+            onClick={() => {
+              throw new Error("Sentry Front error test");
+            }}
+          /> */}
+        </>
       )}
     </>
   );
