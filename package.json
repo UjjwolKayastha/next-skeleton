@@ -10,7 +10,11 @@
     "start:user": "node -r ./dotenv.config.js node_modules/.bin/lerna run --scope user --stream dev",
     "build:user": "node -r ./dotenv.config.js node_modules/.bin/lerna run --scope user --stream build",
     "run:build:user": "lerna run start --scope user",
-    "export:user": "node -r ./dotenv.config.js node_modules/.bin/lerna run --scope user --stream export"
+    "export:user": "node -r ./dotenv.config.js node_modules/.bin/lerna run --scope user --stream export",
+    "start:admin": "node -r ./dotenv.config.js node_modules/.bin/lerna run --scope admin --stream dev",
+    "build:admin": "node -r ./dotenv.config.js node_modules/.bin/lerna run --scope admin --stream build",
+    "run:build:admin": "lerna run start --scope admin",
+    "export:admin": "node -r ./dotenv.config.js node_modules/.bin/lerna run --scope admin --stream export"
   },
   "workspaces": [
     "packages/*"
