@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "linaria/react";
 import { InputComponent as Input } from "shared";
 import { useForm } from "react-hook-form";
-import { Button } from "antd";
+import { Button, Typography } from "antd";
 
 const FormTitle = styled.h3`
   color: black;
@@ -10,7 +10,13 @@ const FormTitle = styled.h3`
 `;
 
 const Form = styled.form`
-  padding: 10px;
+  padding: 15px;
+`;
+
+const Label = styled.p`
+  font-size: 13px;
+  color: #1f2b2a;
+  margin-bottom: 5px;
 `;
 
 const RegisterForm = () => {
@@ -24,16 +30,19 @@ const RegisterForm = () => {
     <div>
       <FormTitle>REGISTER HERE</FormTitle>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        <Label>Full Name</Label>
         <Input
           control={control}
           name="fullname"
           rules={{ required: "Required" }}
         />
+        <Label>Username</Label>
         <Input
           control={control}
           name="username"
           rules={{ required: "Required" }}
         />
+        <Label>Password</Label>
         <Input
           control={control}
           name="password"
