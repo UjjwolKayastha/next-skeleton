@@ -14,9 +14,17 @@ import { styled } from "linaria/react";
 const Container = styled.main`
   font-size: 14px;
   color: ${(props) => props.color};
-  border: 1px solid red;
+  padding-left: 20px;
+  padding-right: 50px;
   &:hover {
     border-color: blue;
+  }
+  & > div {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 20px;
+    grid-column-gap: 50px;
   }
 `;
 
@@ -41,9 +49,11 @@ export default function Home() {
 
       <Container>
         <Title>IMAGES</Title>
-        {photos?.hits.map((photo) => (
-          <img key={photo?.id} src={photo?.previewURL} alt={photo?.user} />
-        ))}
+        <div>
+          {photos?.hits.map((photo) => (
+            <img key={photo?.id} src={photo?.previewURL} alt={photo?.user} />
+          ))}
+        </div>
       </Container>
     </div>
   );
